@@ -1,0 +1,63 @@
+@mixin flex ($direction: column, $align: center, $justify: center) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+.wrapper {
+    @include flex($direction: column, $align: center, $justify: center);
+    height: 100vh;
+    .result {
+        width: 800px;
+        height: 300px;
+        padding: 10px;
+        font-size: 18px;
+        color: #444;
+        text-align: start;
+        text-rendering: auto;
+        background-color: white;
+        border: 1px solid rgb(169, 169, 169);
+        
+    }
+    .keyboard {
+        width: 704px;
+        height: 300px;
+        @include flex($direction: column, $align: center, $justify: center);
+        .row {
+            width: 704px;
+            height: 40px;
+            margin-bottom: 8px;
+            @include flex($direction: row, $align: flex-start, $justify: flex-start);
+            .key {
+                width: 40px;
+                height: 40px;
+                margin-left: 6px;
+                font-weight: 500;
+                line-height: 40px;
+                text-align: center;
+                color: #fff;
+                background: #3a424e;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .backspace {
+                width: 100px;
+            }
+            .tab, .del {
+                width: 50px;
+            }
+            .capslock, .shift {
+                width: 100px;
+            }
+            .enter, .shift-right {
+                width: 86px;
+            }
+            .space {
+                width: 330px;
+            }
+        }
+    }
+}
+
+
+ 
