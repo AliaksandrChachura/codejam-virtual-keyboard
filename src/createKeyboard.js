@@ -1,4 +1,3 @@
-//document.body.innerHTML = '<div class="wrapper"><textarea class="result" id="result" rows="6" cols="60"></textarea><div class="keyboard" id="keyboard"><div class="row"><div class="key"><span class="Backquote on">ё</span></div>        <div class="key"><span class="Digit1 on">1</span></div><div class="key"><span class="Digit2 on">2</span></div><div class="key"><span class="Digit3 on">3</span></div><div class="key"><span class="Digit4 on">4</span></div><div class="key"><span class="Digit5 on">5</span></div><div class="key"><span class="Digit6 on">6</span></div><div class="key"><span class="Digit7 on">7</span></div><div class="key"><span class="Digit8 on">8</span></div><div class="key"><span class="Digit9 on">9</span></div><div class="key"><span class="Digit0 on">0</span></div><div class="key"><span class="Minus on"><span class="case down">-</span></span></div><div class="key"><span class="Equal on"><span class="case down">=</span></span></div><div class="key backspace"><span class="Backspace on"><span class="case down">Backspace</span></span></div></div><div class="row"><div class="key tab"><span class="Tab on"><span class="case down">Tab</span></span></div><div class="key"><span class="KeyQ on"><span class="case down">й</span></span></div><div class="key"><span class="KeyW on"><span class="case down">ц</span></span></div><div class="key"><span class="KeyE on"><span class="case down">у</span></span></div><div class="key"><span class="KeyR on"><span class="case down">к</span></span></div><div class="key"><span class="KeyT on"><span class="case down">е</span></span></div><div class="key"><span class="KeyY on"><span class="case down">н</span></span></div><div class="key"><span class="KeyU on"><span class="case down">г</span></span></div><div class="key"><span class="KeyI on"><span class="case down">ш</span></span></div><div class="key"><span class="KeyO on"><span class="case down">щ</span></span></div><div class="key"><span class="KeyP on"><span class="case down">з</span></span></div><div class="key"><span class="BracketLeft on"><span class="case down">х</span></span></div><div class="key"><span class="BracketRight on"><span class="case down">ъ</span></span></div><div class="key"><span class="Backslash on"><span class="case down">	&#92;</span></span></div><div class="key del"><span class="Delete on"><span class="case down">DEL</span></span></div></div><div class="row"><div class="key capslock"><span class="CapsLock on"><span class="case down">CapsLock</span></span></div><div class="key"><span class="KeyA on"><span class="case down">ф</span></span></div><div class="key"><span class="KeyS on"><span class="case down">ы</span></span></div><div class="key"><span class="KeyD on"><span class="case down">в</span></span></div><div class="key"><span class="KeyF on"><span class="case down">а</span></span></div><div class="key"><span class="KeyG on"><span class="case down">п</span></span></div><div class="key"><span class="KeyH on"><span class="case down">р</span></span></div><div class="key"><span class="KeyJ on"><span class="case down">о</span></span></div><div class="key"><span class="KeyK on"><span class="case down">л</span></span></div><div class="key"><span class="KeyL on"><span class="case down">д</span></span></div><div class="key"><span class="Semicolon on"><span class="case down">ж</span></span></div><div class="key"><span class="Quote on"><span class="case down">э</span></span></div><div class="key enter"><span class="Enter on"><span class="case down">ENTER</span></span></div></div><div class="row"><div class="key shift"><span class="ShiftLeft on"><span class="case down">Shift</span></span></div><div class="key"><span class="KeyZ on"><span class="case down">я</span></span></div><div class="key"><span class="KeyX on"><span class="case down">ч</span></span></div><div class="key"><span class="KeyC on"><span class="case down">с</span></span></div><div class="key"><span class="KeyV on"><span class="case down">м</span></span></div><div class="key"><span class="KeyB on"><span class="case down">и</span></span></div><div class="key"><span class="KeyN on"><span class="case down">т</span></span></div><div class="key"><span class="KeyM on"><span class="case down">ь</span></span></div><div class="key"><span class="Comma on"><span class="case down">б</span></span></div><div class="key"><span class="Period on"><span class="case down">ю</span></span></div><div class="key"><span class="Slash on"><span class="case down">.</span></span></div><div class="key arrow"><span class="ArrowUp on"><span class="case down">&uarr;</span></span></div><div class="key shift-right"><span class="ShiftRight on"><span class="case down">Shift</span></span></div></div><div class="row"><div class="key ctrl"><span class="ControlLeft on"><span class="case down">Ctrl</span></span></div><div class="key win"><span class="Metaleft on"><span class="case down">Win</span></span></div><div class="key alt active"><span class="AltLeft on"><span class="case down">Alt</span></span></div><div class="key space"><span class="Space on"><span class="case down"></span></span></div><div class="key alt"><span class="AltRight on"><span class="case down">Alt</span></span></div><div class="key arrow"><span class="ArrowLeft on"><span class="case down">&larr;</span></span></div><div class="key arrow"><span class="ArrowDown on"><span class="case down">&darr;</span></span></div><div class="key arrow"><span class="ArrowRight on"><span class="case down">&rarr;</span></span></div><div class="key ctrl"><span class="ControlRight on"><span class="case down">Ctrl</span></span></div></div></div></div>';
 const keyboardSymbols = {
     Backquote: {
         main: "ё",
@@ -167,6 +166,12 @@ const keyboardSymbols = {
         mainCaps: "&#47;",
         second: "&#92;",
         secondCaps: "&#124;"
+    },
+    Delete: {
+        main: "Del",
+        mainCaps: "Del",
+        second: "Del",
+        secondCaps: "Del"
     },
     CapsLock: {
         main: "CapsLock",
@@ -381,11 +386,10 @@ const keyboardSymbols = {
 }
 
 class keyboard {
-    constructor() {
+    constructor(Case, value2) {
         this.key;
-        //this.keyboard = keyboardSymbols;
-        this.capslock = false;
-        this.main = true;
+        this.capslock = Case;
+        this.main = value2;
     }
 
     createTextArea() {
@@ -393,15 +397,218 @@ class keyboard {
     }
 
     createKeyboard() {
-        let div = document.createElement('div');
-        div.classList.add('row');
-        for (let key in keyboardSymbols) {
-            if (this.capslock === false && this.main === true){
-                div.insertAdjacentHTML('beforeend', `<div class="key">${keyboardSymbols.key.main}</div>`);
+        let keyboard = document.getElementById('keyboard');
+        if (this.capslock === false && this.main === true) {
+            Object.keys(keyboardSymbols).forEach((item) => {
+                if (item === 'Backspace') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'backspace');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].main;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Tab' || item === 'Del') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'tab');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].main;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'CapsLock' || item === 'ShiftLeft') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'capslock');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].main;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Enter' || item === 'ShiftRight') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'enter');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].main;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Space') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'space');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].main;
+                    keyboard.appendChild(div);
+                }
+                else {
+                    let div = document.createElement('div');
+                    div.classList.add('key');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].main;
+                    keyboard.appendChild(div);
+                }
+            });
             }
+           
+        else if (this.capslock === true && this.main === true) {
+            Object.keys(keyboardSymbols).forEach((item) => {
+                if (item === 'Backspace') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'backspace');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].mainCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Tab' || item === 'Del') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'tab');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].mainCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'CapsLock' || item === 'ShiftLeft') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'capslock');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].mainCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Enter' || item === 'ShiftRight') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'enter');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].mainCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Space') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'space');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].mainCaps;
+                    keyboard.appendChild(div);
+                }
+                else {
+                    let div = document.createElement('div');
+                    div.classList.add('key');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].mainCaps;
+                    keyboard.appendChild(div);
+                }
+            });
+            }
+        else if (this.capslock === false && this.main === false) {
+            Object.keys(keyboardSymbols).forEach((item) => {
+                if (item === 'Backspace') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'backspace');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].second;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Tab' || item === 'Del') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'tab');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].second;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'CapsLock' || item === 'ShiftLeft') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'capslock');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].second;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Enter' || item === 'ShiftRight') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'enter');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].second;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Space') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'space');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].second;
+                    keyboard.appendChild(div);
+                }
+                else {
+                    let div = document.createElement('div');
+                    div.classList.add('key');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].second;
+                    keyboard.appendChild(div);
+                }
+            });
+            }
+        else if (this.capslock === true && this.main === false) {
+            Object.keys(keyboardSymbols).forEach((item) => {
+                if (item === 'Backspace') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'backspace');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].secondCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Tab' || item === 'Del') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'tab');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].secondCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'CapsLock' || item === 'ShiftLeft') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'capslock');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].secondCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Enter' || item === 'ShiftRight') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'enter');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].secondCaps;
+                    keyboard.appendChild(div);
+                }
+                else if (item === 'Space') {
+                    let div = document.createElement('div');
+                    div.classList.add('key', 'space');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].secondCaps;
+                    keyboard.appendChild(div);
+                }
+                else {
+                    let div = document.createElement('div');
+                    div.classList.add('key');
+                    div.id = item;
+                    div.innerHTML = keyboardSymbols[item].secondCaps;
+                    keyboard.appendChild(div);
+                }
+            });
+            }    
+    }
+    set Case(value1) {
+        this.capslock = value1;
+        //if (this.capslock === false) {
+         //   this.capslock = true;
+        //}
+        //else {
+        //    this.capslock = false;
+       // }
+      // return this.capslock;
+    }
+
+    get Case() {
+        return this.capslock;
+    }
+
+    changeLanguage() {
+        if (this.main === true) {
+            this.main = false;
         }
-       
+        else {
+            this.main = true;
+        }
     }
 }
-let newKeyboard = new keyboard();
-document.body.innerHTML = newKeyboard.createTextArea();// + newKeyboard.createKeyboard();
+const textArea = new keyboard(false, true);
+//textArea.Case(false);
+document.body.innerHTML = textArea.createTextArea();
+textArea.createKeyboard();
