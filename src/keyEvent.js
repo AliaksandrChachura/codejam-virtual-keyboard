@@ -19,6 +19,10 @@ document.addEventListener('keydown', (event) => {
 
 document.addEventListener('keyup', (event) => {
     let className = event.code;
+    if (className === 'CapsLock'){
+        let el = document.getElementById(className);    
+        el.classList.toggle("clickCaps");
+    }
     let el = document.getElementById(className);
     el.classList.remove('click');
 })
