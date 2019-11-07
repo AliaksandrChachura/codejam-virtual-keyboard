@@ -617,27 +617,69 @@ document.body.innerHTML = textArea.createTextArea();
 textArea.createKeyboard();
 
 let keyBoard = document.getElementById('keyboard');
-let input = document.getElementById('result').value;
+
+let input = document.getElementById('result');
+input.focus();
 keyBoard.addEventListener('click', (event) => {
     let target = event.target;
     let className = target.id;
     if (event.target.id === 'CapsLock'){
-    let el = document.getElementById(className); 
-    keyBoard.innerHTML = "";
-    textArea.changeCase();
-    textArea.createKeyboard();
+        let el = document.getElementById(className); 
+        keyBoard.innerHTML = "";
+        textArea.changeCase();
+        textArea.createKeyboard();
     }
 })
 
 keyBoard.addEventListener('mousedown', (event) => {
+    input.focus();
     let target = event.target;
     let className = target.id;
     let el = document.getElementById(className);    
     el.classList.add('click');
+    console.log(el.innerHTML);
+    console.log(result);
+    if (className !== 'Tab' && className !== 'CapsLock' && className !== 'ShiftLeft' && className !== 'ShiftRight' && className !== 'ControlLeft' && className !== 'ControlRight' && className !== 'metaKey' && className !== 'Backspace' && className !== 'Delete' && className !== 'Enter' && className !== 'Space' && className !== 'AltLeft' && className !== 'AltRight' && className !== 'ArrowLeft' && className !== 'ArrowUp' && className !== 'ArrowDown' && className !== 'ArrowRight' && className !== 'Win') {
+        input.value += el.innerHTML;
+    }
+    else if (className === 'Tab') {
+        input.value += "\t";
+    }
+    else if (className === 'Space') {
+        input.value += " ";
+    }
+    else if (className === 'ShiftLeft' || className === 'ShiftRight') {
+        keyBoard.innerHTML = "";
+        textArea.changeCase();
+        textArea.createKeyboard();
+    }
+    else if (className === 'Enter') {
+        input.value += "\n";
+    }
 })
 
+keyBoard.addEventListener('mouseup', (event) => {
+    input.focus();
+    let target = event.target;
+    let className = target.id;
+    let el = document.getElementById(className);
+    el.classList.remove('click');
+    if (className === 'ShiftLeft' || className === 'ShiftRight') {
+        keyBoard.innerHTML = "";
+        textArea.changeCase();
+        textArea.createKeyboard();
+    }
+})
+
+keyBoard.addEventListener('mouseout', (event) => {
+    let target = event.target;
+    let className = target.id;
+    let el = document.getElementById(className);
+    el.classList.remove('click');    
+})
 
 document.addEventListener('keydown', (event) => {
+    input.focus();
     let className = event.code;
     console.log(className);
     
@@ -651,6 +693,7 @@ document.addEventListener('keydown', (event) => {
 })
 
 document.addEventListener('keyup', (event) => {
+    input.focus();
     let className = event.code;
     if (className === 'CapsLock'){
         keyBoard.innerHTML = "";
