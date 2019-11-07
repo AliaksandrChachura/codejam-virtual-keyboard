@@ -161,7 +161,7 @@ const keyboardSymbols = {
         second: "&#93;",
         secondCaps: "&#125;"
     },
-    BackSlash: {
+    Backslash: {
         main: "&#92;",
         mainCaps: "&#47;",
         second: "&#92;",
@@ -386,14 +386,13 @@ const keyboardSymbols = {
 }
 
 class keyboard {
-    constructor(Case, value2) {
-        this.key;
+    constructor(Case = false, Language = true) {
         this.capslock = Case;
-        this.main = value2;
+        this.main = Language;
     }
 
     createTextArea() {
-        return '<div class="wrapper"><textarea class="result" id="result" rows="6" cols="60"></textarea><div class="keyboard" id="keyboard"></div></div>';
+               return '<div class="wrapper"><textarea class="result" id="result" rows="6" cols="60"></textarea><div class="keyboard" id="keyboard"></div></div>';
     }
 
     createKeyboard() {
@@ -584,31 +583,82 @@ class keyboard {
             });
             }    
     }
-    set Case(value1) {
-        this.capslock = value1;
-        //if (this.capslock === false) {
-         //   this.capslock = true;
-        //}
-        //else {
-        //    this.capslock = false;
-       // }
-      // return this.capslock;
-    }
 
     get Case() {
         return this.capslock;
+    }
+
+    changeCase() {
+        if (this.capslock === true) {
+            this.capslock = false;
+        }
+        else if (this.capslock === false) {
+            this.capslock = true;
+        }
+    }
+
+    get Language() {
+        return this.main;
     }
 
     changeLanguage() {
         if (this.main === true) {
             this.main = false;
         }
-        else {
-            this.main = true;
+        else if (this.main === false) {
+            this.main = true;   
         }
     }
 }
-const textArea = new keyboard(false, true);
-//textArea.Case(false);
+
+
+const textArea = new keyboard();
 document.body.innerHTML = textArea.createTextArea();
 textArea.createKeyboard();
+
+let keyBoard = document.getElementById('keyboard');
+let input = document.getElementById('result').value;
+keyBoard.addEventListener('click', (event) => {
+    let target = event.target;
+    let className = target.id;
+    if (event.target.id === 'CapsLock'){
+    let el = document.getElementById(className); 
+    keyBoard.innerHTML = "";
+    textArea.changeCase();
+    textArea.createKeyboard();
+    }
+})
+
+keyBoard.addEventListener('mousedown', (event) => {
+    let target = event.target;
+    let className = target.id;
+    let el = document.getElementById(className);    
+    el.classList.add('click');
+})
+
+
+document.addEventListener('keydown', (event) => {
+    let className = event.code;
+    console.log(className);
+    
+    if (event.code === 'AltLeft' || (event.ShiftLeft || event.metaKey)) {
+        keyBoard.innerHTML = "";
+        textArea.changeLanguage();
+        textArea.createKeyboard();
+    }
+    let el = document.getElementById(className);    
+    el.classList.add('click');    
+})
+
+document.addEventListener('keyup', (event) => {
+    let className = event.code;
+    if (className === 'CapsLock'){
+        keyBoard.innerHTML = "";
+        textArea.changeCase();
+        textArea.createKeyboard();
+        el.classList.toggle("clickCaps");
+    }
+    let el = document.getElementById(className);
+    el.classList.remove('click');
+})
+
