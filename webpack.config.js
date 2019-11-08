@@ -1,3 +1,8 @@
+/* eslint-disable indent */
+/* eslint-disable quotes */
+/* eslint-disable object-curly-spacing */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable comma-dangle */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -12,18 +17,18 @@ module.exports = {
 
   module: {
     rules: [
-      { 
+      {
         test: /\.html$/,
         use: [
           {
             loader: 'html-loader',
             options: {minimize: false}
           }
-        ] 
+        ]
       },
-      { 
+      {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'] 
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(css|sass|scss)$/,
@@ -43,8 +48,8 @@ module.exports = {
         }]
       }
      ]
-    },    
-  
+    },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
