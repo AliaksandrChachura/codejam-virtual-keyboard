@@ -593,16 +593,8 @@ class Keyboard {
 }
 
 const textArea = new Keyboard(true, false);
-console.log(`textarea.Lang = ${textArea.Language}`);
-//localStorage.setItem(textArea.Language, textArea.Language);
 document.body.innerHTML = textArea.createTextArea();
 textArea.createKeyboard();
-
-//document.body.innerHTML = textArea.createTextArea();
-//console.log(localStorage.getItem('lang'));
-//console.log(textArea.Language);
-//textArea.createKeyboard();
-
 const keyBoard = document.getElementById('keyboard');
 
 const input = document.getElementById('result');
@@ -621,7 +613,7 @@ keyBoard.addEventListener('mousedown', (event) => {
   const className = target.id;
   const el = document.getElementById(className);
   el.classList.add('click');
-  if (className !== 'Tab' && className !== 'CapsLock' && className !== 'ShiftLeft' && className !== 'ShiftRight' && className !== 'ControlLeft' && className !== 'ControlRight' && className !== 'metaKey' && className !== 'Backspace' && className !== 'Delete' && className !== 'Enter' && className !== 'Space' && className !== 'AltLeft' && className !== 'AltRight' && className !== 'ArrowLeft' && className !== 'ArrowUp' && className !== 'ArrowDown' && className !== 'ArrowRight' && className !== 'Win') {
+  if (className !== 'Tab' && className !== 'CapsLock' && className !== 'ShiftLeft' && className !== 'ShiftRight' && className !== 'ControlLeft' && className !== 'ControlRight' && className !== 'metaKey' && className !== 'Backspace' && className !== 'Delete' && className !== 'Enter' && className !== 'Space' && className !== 'AltLeft' && className !== 'AltRight' && className !== 'ArrowLeft' && className !== 'ArrowUp' && className !== 'ArrowDown' && className !== 'ArrowRight' && className !== 'Win' && className !== 'keyboard') {
     input.value += el.innerHTML;
   } else if (className === 'Tab') {
     input.value += '\t';
@@ -664,7 +656,6 @@ document.addEventListener('keydown', (event) => {
     keyBoard.innerHTML = '';
     textArea.changeLanguage();
     localStorage.setItem(textArea.Language, textArea.Language);
-    console.log(`textArea.Language = ${textArea.Language} localStorage.getItem = ${localStorage.getItem(textArea.Language)}`);
     textArea.createKeyboard();
   } else if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     keyBoard.innerHTML = '';
